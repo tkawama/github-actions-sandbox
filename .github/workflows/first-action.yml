@@ -1,21 +1,22 @@
 name: Sandbox First Action
 
-# トリガー：mainブランチへのプッシュ、または画面からの手動実行
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # これを入れておくと、ボタンポチで手動実行できるようになります！
+  workflow_dispatch:
 
 jobs:
   sandbox-job:
     runs-on: ubuntu-latest
+    
+    # 🌟 ここを追加！Node.js 24で動かすように指示します
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      # 1. おまじない：リポジトリのコードを仮想環境に持ってくる
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # 2. 仮想環境の情報をちょっと覗いてみる
       - name: Check environment info
         run: |
           echo "実行されたブランチ: ${{ github.ref }}"
@@ -23,6 +24,5 @@ jobs:
           echo "サーバーのOS確認:"
           uname -a
 
-      # 3. シンプルなメッセージ出力
       - name: Say Hello
         run: echo "github-actions-sandbox が無事に起動しました！"
