@@ -9,13 +9,12 @@ jobs:
   sandbox-job:
     runs-on: ubuntu-latest
     
-    # 🌟 ここを追加！Node.js 24で動かすように指示します
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    # 💡 envの2行は削除してスッキリさせます
 
     steps:
+      # 🌟 ここを @v4 から @v5 に変更！これが最新の部品です
       - name: Checkout repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check environment info
         run: |
